@@ -26,7 +26,9 @@ class App extends PureComponent{
   searchIssues = () => {
     const formatedLabel = this.state.label.replaceAll(" ", "+");
     console.log(formatedLabel);
-    fetch("https://api.github.com/repos/"+this.state.repo+"/issues?q=is%3Aopen+label%3A"+formatedLabel)
+    const query = "https://api.github.com/repos/"+this.state.repo+"/issues?q=is%3Aopen+label%3A"+formatedLabel;
+    console.log(`query: ${query}`)
+    fetch(query)
     .then(res => res.json())
     .then(
       (result) => {

@@ -1,9 +1,9 @@
 import React from 'react';
-import Aux from '../hoc/Aux';
+import Container from '../hoc/Container';
 
 const InputSearch = ( props ) => {
     return(
-        <Aux>
+        <Container>
             <label>
                 Enter repo
                 <input type="text" value={props.repo} onChange={props.onChangeRepo}></input>
@@ -13,7 +13,7 @@ const InputSearch = ( props ) => {
                 <input type="text" value={props.label} onChange={props.onChangeLabel}></input>
             </label>
             <button type="button" onClick={props.onSearch}>Buscar</button>
-        </Aux>
+        </Container>
     );
 }
 
