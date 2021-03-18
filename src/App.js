@@ -2,12 +2,13 @@ import logo from './logo.svg';
 import './App.css';
 import InputSearch from './components/InputSearch';
 import { PureComponent } from 'react';
-
+import IssueCard from './components/IssueCard'
 class App extends PureComponent{
 
   state = {
-    repo: "facebook/react",
-    label: "Type: Bug"
+    repo: "angular/angular",
+    label: "Type: Bug",
+    issues: []
   }
 
   onChangeRepo = (event) => {
@@ -32,7 +33,19 @@ class App extends PureComponent{
     .then(res => res.json())
     .then(
       (result) => {
-        console.log(result);
+
+        const issues = result.map((issue, index) => {
+            const { html_url, title, state } = issue
+            return (<IssueCard key={index} 
+              html_url={html_url} 
+              title={title} 
+              state={state}/>)
+        })
+
+
+        this.setState({
+          issues
+        })
       }
     )
   }
@@ -47,6 +60,9 @@ class App extends PureComponent{
           onChangeLabel={(event) => this.onChangeLabel(event)}
           onSearch={() => this.searchIssues()}
         />
+
+        {this.state.issues.map(issue => issue)}
+
       </div>
     )
   }
