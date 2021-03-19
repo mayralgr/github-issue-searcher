@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import InputSearch from './components/InputSearch';
 import { PureComponent } from 'react';
@@ -33,13 +32,13 @@ class App extends PureComponent{
     .then(res => res.json())
     .then(
       (result) => {
-
         const issues = result.map((issue, index) => {
             const { html_url, title, state } = issue
             return (<IssueCard key={index} 
-              html_url={html_url} 
+              html_url={html_url}
               title={title} 
-              state={state}/>)
+              state={state}
+              />)
         })
 
 
@@ -60,8 +59,11 @@ class App extends PureComponent{
           onChangeLabel={(event) => this.onChangeLabel(event)}
           onSearch={() => this.searchIssues()}
         />
-
-        {this.state.issues.map(issue => issue)}
+        <div class="container">
+          <div className="row">
+            {this.state.issues.map(issue => issue)}
+          </div>
+        </div>
 
       </div>
     )
